@@ -11,7 +11,20 @@
  */
 
 const stocks = (prices) => {
-   
+    let l = 0
+    let r = 1
+    let maxProfit = 0
+    while (r < nums.length){ 
+        let profit = nums[r] - nums[l]      
+        if (profit > 0){
+            maxProfit = Math.max(profit, maxProfit)
+        }
+        else {
+            l = r
+        }
+        r++
+    }
+    console.log(maxProfit)
 }
 
 
