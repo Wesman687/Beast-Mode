@@ -1,45 +1,19 @@
-/** Contains Duplicate **
+/** Stock Trading
  * 
- * Given an array of integers, return true if any integer appears
- * at least twice in the array, otherwise return false.
+ * Given an array of 'prices', find the transaction that will yield the greatest profits.
+ * You want to maximize your profit by choosing a single day to buy one stock and choosing 
+ * a different day in the future to sell that stock.
  * 
- * @example
- * containsDuplicate([1, 2, 3, 4]) -> false
- * containsDuplicate([1, 2, 2, 5]) -> true
- * containsDuplicate([1, 2, 9, 5, 9]) -> true
- * 
+ * @examples
+ * stocks([8, 3, 6, 1, 6, 4, 7]) -> 6
+ * stocks([1, 8, 3, 4]) -> 7
+ * stocks([2, 9, 18, 9, 2]) ->  16
  */
-const mapDifferenceToIndex = new Map()
+
 
 function twoSum(nums, target){
+
     
-    const set = new Set() 
-
-    for (let i = 0; i < nums.length; ++i){
-        if (set.has(nums[i])){
-            return true
-        }
-        set.add(nums[i])
-    }
-
-
-    /* 0(nlog(n)) time | 0(n) space
-    const sorted = nums.sort((a, b) => a - b)
-    for (let i = 0; i < sorted.length -1; i++){
-        if (sorted[i] === sorted[i + 1]){
-            console.log(sorted[i])
-        }
-    }
-    /*
-    O(n^2) time | O(1) space
-    for (let i = 0; i < nums.length -1; i++){
-        for(let j = i + 1; j < nums.length ; j++){
-            if (nums[i] == nums[j]){
-                console.log(nums[i])
-            }
-        }
-    }
-    */
 }
 
-console.log(twoSum([1, 2, 2, 5]))
+console.log(twoSum([2, 3, 4], 6))
