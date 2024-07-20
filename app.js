@@ -1,32 +1,45 @@
-/** Stock Trading
- * 
- * Given an array of 'prices', find the transaction that will yield the greatest profits.
- * You want to maximize your profit by choosing a single day to buy one stock and choosing 
- * a different day in the future to sell that stock.
- * 
+/** Three Sum
+ *
+ * Given an array of integers 'nums', return an array of all the
+ * three numbers that add up to 0.
+ *
+ * Note: There cannot be any duplicate triplets in the results array.
+ *
  * @examples
- * stocks([8, 3, 6, 1, 6, 4, 7]) -> 6
- * stocks([1, 8, 3, 4]) -> 7
- * stocks([2, 9, 18, 9, 2]) ->  16
+ * threeSum([-1, 0, 1, 2, -1, -4]) = [[-1, -1, 2], [-1, 0, 1]]
+ * threeSum([-2, -2, 0, 0, 1, 1, 2, 2]) = [[ -2, 0, 2 ], [ -2, 1, 1 ]]
+ * threeSum([0, 0, 0, 0]) = [[0, 0, 0]]
  */
 
-
-function stocks(nums){
-    let l = 0
-    let r = 1
-    let maxProfit = 0
-    while (r < nums.length){ 
-        let profit = nums[r] - nums[l]      
-        if (profit > 0){
-            maxProfit = Math.max(profit, maxProfit)
-        }
-        else {
-            l = r
-        }
-        r++
+function threeSum(nums) {
+  let l = 1;
+  let r = nums.length - 1;
+  let threeSums = [];
+  nums.sort((a, b) => a - b);
+  for (let i = 0; i < nums.length - 2; ++i) {
+    if (nums[i] == nums[i - 1]) {
+      continue;
     }
-    console.log(maxProfit)
-    
+    let l = i + 1;
+    let r = nums.length - 1;
+    while (l < r) {
+      const sum = nums[i] + nums[l] + nums[r];
+      if (sum > 0) {
+        r--;
+      }
+      if (sum < 0) {
+        l++;
+      }
+      if (sum === 0) {
+        threeSums.push([i, l, r]);
+        l++;
+        while (nums[l] == nums[l - 1] && l < r) {
+          l++;
+        }
+      }
+    }
+  }
+  console.log(threeSums);
 }
 
-console.log(stocks([2, 9, 18, 9, 2]))
+console.log(threeSum([2, 9, 18, 78, 1, 5, -2, 3, 9, 0, -8]));
