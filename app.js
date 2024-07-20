@@ -1,32 +1,30 @@
-/** Binary Search **
- *
- * Given a sorted array 'nums' and an integer 'target', return
- * the index of the target.
- *
- * Note: Your solutions' time complexity must be faster than O(n).
- *
+/** Minimum Number in Rotated Sorted Array **
+ * 
+ * Given a rotated sorted array, return the smallest 
+ * number in the array.
+ * 
+ * Note: Your solutions' time complexity must be faster than O(n). 
+ * 
  * @example
- * binarySearch([1, 2, 4, 9, 12], 9) -> 3
- * binarySearch([-2, -1, 4, 5, 7], -1) -> 1
- * binarySearch([-1, 4, 18, 20], 18) -> 2
- *
+ * findMinimum([5, 4, 1, 2]) -> 1
+ * findMinimum([7, 9, 12, 3, 4]) -> 3
+ * findMinimum([3, 4, 2, 0]) -> 0
+ * 
  */
-function binarySearch(nums, target) {
-  let l = 0;
-  let r = nums.length - 1;
-  let i = 0;
-  while (l<=r) {     
-    mid = Math.floor((l + r) / 2); 
-    if (nums[mid] === target){
-        return mid
+function findMinimum(nums) {
+  let l = 0
+  let r = nums.length - 1
+  while (l<r){
+    let mid = Math.floor((l + r)/ 2)
+    if (nums[mid] > nums[l]){
+        l = mid + 1
     }
-    else if (nums[mid] > target) {
-      r = mid - 1;
-    } else {
-      l = mid + 1;
+    else {
+        r = mid
     }
   }
-  return"No matches";
+  return l
+  
 }
 
-console.log(binarySearch([1, 2, 4, 9, 12], 8));
+console.log(findMinimum([7, 9, 12, 3, 4]));
