@@ -1,44 +1,39 @@
-/** Search in Rotated Sorted Array **
+/** Container with Most Water **
  * 
- * Given a rotated sorted array and a target, 
- * return the index of the number in the array 
- * which equals to the target.
- * 
- * Note: Your solutions' time complexity must be faster than O(n). 
+ * Given an array 'heights' which represents the heights of blocks
+ * on a container, find the maximum area of water that can be stored
+ * within these blocks. 
  * 
  * @example
- * search([5, 4, 1, 2, 3], 2) -> 3
- * search([7, 9, 12, 3, 4], 7) -> 0
- * search([3, 4, 2, 0], 4) -> 1
+ * maxWater([1, 5, 4, 3]) -> 6
+ * maxWater([1, 5, 6, 3, 4, 2]) -> 12
+ * maxWater([4, 3, 2, 1, 4]) -> 16
  * 
  */
-function search(nums, target) {
+function maxWater(heights) {
     let l = 0
-    let r = nums.length - 1
-    while (l<r){
-        let mid = Math.floor((l + r)/ 2)
-        if (nums[mid] === target) {
-            return mid
+    let r = heights.length - 1
+    let maxArea = 0
+
+    while (l<r) {
+        let width = r - l 
+        let height = Math.min(heights[l], heights[r])
+        let area = width * height
+        console.log(area, height, width, l, r)
+        if (heights[l] < heights[r]){
+            l += 1
         }
-        if (nums[mid]< nums[r]){
-            if (target < nums[mid] || target > nums[r]){
-                r = mid - 1
-            } 
-            else {
-                l = mid + 1
-            }
+        else {
+            r -= 1
         }
-        else  {
-            if (target > nums[mid] || target < nums[l]){
-                l = mid + 1
-            }
-            else {
-                r = mid - 1
-            }
+
+        if (area > maxArea) {
+            maxArea = area
         }
     }
-  return "not found"
+    return maxArea
+    
   
 }
 
-console.log(search([3, 4, 2, 0], 4));
+console.log(maxWater([1, 5, 6, 3, 4, 2]));
