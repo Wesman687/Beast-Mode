@@ -15,6 +15,37 @@
 
 const productExceptSelf = (nums) => {
 
+        
+ /* let productArray = [];
+  productArray[0] = 1;
+  for (let i = 1; i < nums.length; i++) {
+    productArray[i] = nums[i - 1] * productArray[i - 1];
+  }
+  let rightProduct = 1
+  for (let i = nums.length - 1; i >= 0; i--) {
+    productArray[i] = productArray[i] * rightProduct
+    rightProduct = nums[i] * rightProduct 
+  }
+  return productArray;
+
+  
+  const leftProducts = []
+  const rightProducts = []
+  const result = []
+  leftProducts[0] = 1
+  rightProducts[nums.length - 1] = 1
+  for (let i = 1; i < nums.length; i++){
+    leftProducts[i] = leftProducts[i - 1] * nums[i - 1] 
+  }
+  for (let i = nums.length - 2; i >=0; --i){
+    rightProducts[i] = rightProducts[i + 1] * nums[i + 1]
+  }
+  for (let i = 0; i < nums.length - 1; ++i){
+    result = rightProducts[i] * leftProducts[i]
+  }*/
+
+  
+
 };
 
 module.exports = productExceptSelf;

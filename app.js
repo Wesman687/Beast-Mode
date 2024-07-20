@@ -1,25 +1,32 @@
-/** Meeting Times **
- * 
- * Given an array of meeting times, determine if a person can
- * attend all meetings. 
- *  
+/** Binary Search **
+ *
+ * Given a sorted array 'nums' and an integer 'target', return
+ * the index of the target.
+ *
+ * Note: Your solutions' time complexity must be faster than O(n).
+ *
  * @example
- * meetingTimes([[10, 15], [20, 25]]) -> true
- * meetingTimes([[5, 10], [10, 15], [12, 25], [25, 30]]) -> false
- * meetingTimes([[10, 20], [20, 30], [30, 40]]) -> true
- * 
+ * binarySearch([1, 2, 4, 9, 12], 9) -> 3
+ * binarySearch([-2, -1, 4, 5, 7], -1) -> 1
+ * binarySearch([-1, 4, 18, 20], 18) -> 2
+ *
  */
-
-function meetingTimes(nums) {
-  nums.sort((a,b) => a[0] - b[0]) 
-    for (let i = 1; i < nums.length - 1; ++i){
-        if (nums[i - 1][1] > nums[i][0]){
-            return false
-        }
-        
+function binarySearch(nums, target) {
+  let l = 0;
+  let r = nums.length - 1;
+  let i = 0;
+  while (l<=r) {     
+    mid = Math.floor((l + r) / 2); 
+    if (nums[mid] === target){
+        return mid
     }
-    return true
-
+    else if (nums[mid] > target) {
+      r = mid - 1;
+    } else {
+      l = mid + 1;
+    }
+  }
+  return"No matches";
 }
 
-console.log(meetingTimes([[5, 10], [10, 15], [16, 25], [25, 30]]));
+console.log(binarySearch([1, 2, 4, 9, 12], 8));
