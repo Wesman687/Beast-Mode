@@ -1,27 +1,31 @@
-/** Flatten Array **
+/** Move Zeroes **
  * 
- * Given an array 'nums' that can have nested arrays inside it,
- * flatten the array. 
- *  
+ * Given an array 'nums', move all the zeroes to the end.
+ * 
+ * Note: You can not make a copy of the 'nums' array.
  * 
  * @example
- * flatten([1, 2, 3, [4, 5]]) -> [1, 2, 3, 4, 5]
- * flatten([1, 2, 3, [4, [5]]]) -> [1, 2, 3, 4, 5]
- * flatten([1, [2, 3, [4, [5]]]]) -> [1, 2, 3, 4, 5]
+ * moveZeroes([1, 0, 2, 0]) -> [1, 2, 0, 0]
+ * moveZeroes([10, 0, 9]) -> [10, 9, 0]
+ * moveZeroes([3, 4, 0, 2, 0]) -> [3, 4, 2, 0, 0]
  * 
  */
-const results = []
-function flatten(nums) {
-    for (elem of nums) {
-        if(Array.isArray(elem)){
-            flatten(elem)
-        }else{
-            results.push(elem)
-        } 
-        
+
+
+function moveZeroes(nums) {
+    let l = 0
+    let r = 0
+    while (r < nums.length){
+        if (nums[r] !== 0){
+            let temp = nums[r]
+            nums[r] = nums[l]
+            nums[l] = temp
+            l += 1
+        }
+        r += 1
     }
-  return results
+    return nums
 }
 
 
-console.log(flatten([1, [2, 3, [4, [5]]]]));
+console.log(moveZeroes([3, 4, 0, 2, 0]));
