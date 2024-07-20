@@ -1,45 +1,25 @@
-/** Three Sum
- *
- * Given an array of integers 'nums', return an array of all the
- * three numbers that add up to 0.
- *
- * Note: There cannot be any duplicate triplets in the results array.
- *
- * @examples
- * threeSum([-1, 0, 1, 2, -1, -4]) = [[-1, -1, 2], [-1, 0, 1]]
- * threeSum([-2, -2, 0, 0, 1, 1, 2, 2]) = [[ -2, 0, 2 ], [ -2, 1, 1 ]]
- * threeSum([0, 0, 0, 0]) = [[0, 0, 0]]
+/** Meeting Times **
+ * 
+ * Given an array of meeting times, determine if a person can
+ * attend all meetings. 
+ *  
+ * @example
+ * meetingTimes([[10, 15], [20, 25]]) -> true
+ * meetingTimes([[5, 10], [10, 15], [12, 25], [25, 30]]) -> false
+ * meetingTimes([[10, 20], [20, 30], [30, 40]]) -> true
+ * 
  */
 
-function threeSum(nums) {
-  let l = 1;
-  let r = nums.length - 1;
-  let threeSums = [];
-  nums.sort((a, b) => a - b);
-  for (let i = 0; i < nums.length - 2; ++i) {
-    if (nums[i] == nums[i - 1]) {
-      continue;
-    }
-    let l = i + 1;
-    let r = nums.length - 1;
-    while (l < r) {
-      const sum = nums[i] + nums[l] + nums[r];
-      if (sum > 0) {
-        r--;
-      }
-      if (sum < 0) {
-        l++;
-      }
-      if (sum === 0) {
-        threeSums.push([i, l, r]);
-        l++;
-        while (nums[l] == nums[l - 1] && l < r) {
-          l++;
+function meetingTimes(nums) {
+  nums.sort((a,b) => a[0] - b[0]) 
+    for (let i = 1; i < nums.length - 1; ++i){
+        if (nums[i - 1][1] > nums[i][0]){
+            return false
         }
-      }
+        
     }
-  }
-  console.log(threeSums);
+    return true
+
 }
 
-console.log(threeSum([2, 9, 18, 78, 1, 5, -2, 3, 9, 0, -8]));
+console.log(meetingTimes([[5, 10], [10, 15], [16, 25], [25, 30]]));
