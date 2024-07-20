@@ -1,31 +1,30 @@
-/** Move Zeroes **
+/** Sum of Two **
  * 
- * Given an array 'nums', move all the zeroes to the end.
- * 
- * Note: You can not make a copy of the 'nums' array.
+ * Given two arrays, 'nums1' and 'nums2', return true if 
+ * there are two numbers in both arrays which can add up to
+ * an integer target. Otherwise, return false. 
  * 
  * @example
- * moveZeroes([1, 0, 2, 0]) -> [1, 2, 0, 0]
- * moveZeroes([10, 0, 9]) -> [10, 9, 0]
- * moveZeroes([3, 4, 0, 2, 0]) -> [3, 4, 2, 0, 0]
+ * sumOfTwo([1, 2, 3], [5, 2], 8) -> true
+ * sumOfTwo([0, 12, 8], [3, 1, 4], 2) -> false
+ * sumOfTwo([4, 5, 8], [3, 1, 4], 9) -> true
  * 
  */
 
 
-function moveZeroes(nums) {
-    let l = 0
-    let r = 0
-    while (r < nums.length){
-        if (nums[r] !== 0){
-            let temp = nums[r]
-            nums[r] = nums[l]
-            nums[l] = temp
-            l += 1
-        }
-        r += 1
+function sumOfTwo(nums1, nums2, target) {
+    const set = new Set()
+
+    for (num of nums1) {
+        set.add(target - num)
     }
-    return nums
+    for (num of nums2) {
+        if (set.has(num)){
+            return true
+        }
+    }
+    return false
 }
 
 
-console.log(moveZeroes([3, 4, 0, 2, 0]));
+console.log(sumOfTwo([0, 12, 8], [3, 1, 4], 2));
